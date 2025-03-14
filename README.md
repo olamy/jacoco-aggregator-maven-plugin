@@ -1,7 +1,31 @@
 # jacoco-aggregator-maven-plugin
 
-This simple Mojo will help you generate aggregated Jacoco from muti modules projects.
+This simple Apache Maven Mojo will help you generate aggregated Jacoco from muti modules projects.
 
 First this has been proposed as an idea to integrated directly to Jacoco but the PR https://github.com/jacoco/jacoco/pull/1692 
 doesn't look to have great success....
 
+```xml
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>io.github.olamy.maven.plugins</groupId>
+          <artifactId>jacoco-aggregator-maven-plugin</artifactId>
+          <version></version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+```
+
+Now with you Apache Maven cli generating Jacoco reports just add 
+```shell
+jacoco-aggregator:report-aggregate-all
+```
+
+This will generate a full aggregated data report in `target/site/jacoco-aggregate/` included an aggregated `jacoco.xml` which can be used
+with Jenkins `recordCoverage` sa is: 
+
+```groovy
+  recordCoverage name: "Coverage ${env.JDK}", id: "coverage-${env.JDK}", tools: [[parser: 'JACOCO',pattern: 'target/site/jacoco-aggregate/jacoco.xml']]
+                ,sourceDirectories: [[path: 'glob:**/src/main/java']]
+```
