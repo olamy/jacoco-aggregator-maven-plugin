@@ -1,0 +1,2 @@
+_extends: .github
+tag-template: h2spec-maven-plugin-$NEXT_PATCH_VERSION
