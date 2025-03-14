@@ -28,6 +28,7 @@ This will generate a full aggregated data report in `target/site/jacoco-aggregat
 with Jenkins `recordCoverage` sa is: 
 
 ```groovy
-  recordCoverage name: "Coverage ${env.JDK}", id: "coverage-${env.JDK}", tools: [[parser: 'JACOCO',pattern: 'target/site/jacoco-aggregate/jacoco.xml']]
-                ,sourceDirectories: [[path: 'glob:**/src/main/java']]
+  recordCoverage name: "Coverage ${env.JDK}", id: "coverage-${env.JDK}", 
+                tools: [[parser: 'JACOCO',pattern: 'target/site/jacoco-aggregate/jacoco.xml']],
+                sourceDirectories: [[path: 'glob:**/src/main/java']]
 ```
