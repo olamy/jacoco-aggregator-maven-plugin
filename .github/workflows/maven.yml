@@ -29,6 +29,6 @@ jobs:
     uses: jetty-project/.github/.github/workflows/maven-ci.yml@master
     with:
       os-matrix: '[ "ubuntu-latest"]'
-      jdk-matrix: '[ "11", "17", "21" ]'
-      jdk-distribution-matrix: '[ "temurin", "zulu", "microsoft", "liberica", "adopt-openj9" ]'
+      jdk-matrix: '[ "17", "21" ]'
+      jdk-distribution-matrix: '[ "temurin"]'
       matrix-exclude: '[{ "jdk": "8", "distribution": "microsoft"}]'
