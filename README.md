@@ -13,7 +13,8 @@ doesn't look to have great success....
         <plugin>
           <groupId>io.github.olamy.maven.plugins</groupId>
           <artifactId>jacoco-aggregator-maven-plugin</artifactId>
-          <version></version>
+          <!-- or higher check release notes -->  
+          <version>1.0.0</version>
         </plugin>
       </plugins>
     </pluginManagement>
