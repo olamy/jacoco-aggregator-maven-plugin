@@ -2,6 +2,8 @@
 
 This simple Apache Maven Mojo will help you generate aggregated Jacoco from muti modules projects.
 
+This will prevent you creating extra Maven module as a workaround proposed here: https://www.baeldung.com/maven-jacoco-multi-module-project
+
 First this has been proposed as an idea to integrated directly to Jacoco but the PR https://github.com/jacoco/jacoco/pull/1692 
 doesn't look to have great success....
 
