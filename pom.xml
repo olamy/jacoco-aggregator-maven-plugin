@@ -13,7 +13,7 @@
 
   <groupId>io.github.olamy.maven.plugins</groupId>
   <artifactId>jacoco-aggregator-maven-plugin</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0.0-SNAPSHOT</version>
   <packaging>maven-plugin</packaging>
 
   <name>jacoco-aggregator-maven-plugin Maven Plugin</name>
