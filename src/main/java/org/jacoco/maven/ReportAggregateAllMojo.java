@@ -24,6 +24,7 @@ import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
 import org.apache.maven.artifact.versioning.InvalidVersionSpecificationException;
 import org.apache.maven.artifact.versioning.VersionRange;
 import org.apache.maven.model.Dependency;
+import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.project.MavenProject;
@@ -117,6 +118,12 @@ public class ReportAggregateAllMojo extends AbstractReportMojo {
         for (final File execFile : filter.getFiles(basedir)) {
             support.loadExecutionData(execFile);
         }
+    }
+
+    @Override
+    public void execute() throws MojoExecutionException {
+        super.execute();
+        getLog().info("Jacoco reports aggregated \uD83E\uDD56\uD83E\uDD56");
     }
 
     @Override
