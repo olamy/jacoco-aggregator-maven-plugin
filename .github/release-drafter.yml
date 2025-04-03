@@ -1,2 +1,2 @@
-_extends: .github
+_extends: jetty-project/.github
 tag-template: jacoco-aggregator-maven-plugin-$NEXT_PATCH_VERSION
