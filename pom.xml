@@ -26,6 +26,7 @@
     <jacoco.version>0.8.13</jacoco.version>
     <njord.autoPublish>true</njord.autoPublish>
     <drop>false</drop>
+    <njord.prefix>${project.artifactId}-${project.version}</njord.prefix>
   </properties>
 
   <developers>
