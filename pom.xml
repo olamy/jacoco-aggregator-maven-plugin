@@ -24,7 +24,26 @@
     <maven.compiler.release>17</maven.compiler.release>
     <maven.version>3.9.9</maven.version>
     <jacoco.version>0.8.13</jacoco.version>
+    <njord.autoPublish>true</njord.autoPublish>
+    <drop>false</drop>
+    <njord.prefix>${project.artifactId}-${project.version}</njord.prefix>
   </properties>
+
+  <developers>
+    <developer>
+      <id>olamy</id>
+      <name>Olivier Lamy</name>
+      <email>oliver.lamy@gmail.com</email>
+      <timezone>Australia/Brisbane</timezone>
+    </developer>
+  </developers>
+
+  <licenses>
+    <license>
+      <name>Apache Software License - Version 2.0</name>
+      <url>https://www.apache.org/licenses/LICENSE-2.0</url>
+    </license>
+  </licenses>
 
   <scm>
     <connection>scm:git:https://github.com/olamy/jacoco-aggregator-maven-plugin</connection>
@@ -36,6 +55,10 @@
     <url>https://github.com/olamy/jacoco-aggregator-maven-plugin/issues</url>
   </issueManagement>
   <distributionManagement>
+    <repository>
+      <id>sonatype-cp</id>
+      <url>https://blablabla.fake.com</url>
+    </repository>
     <snapshotRepository>
       <id>central</id>
       <url>https://central.sonatype.com/repository/maven-snapshots</url>
@@ -103,44 +126,74 @@
   </dependencies>
 
   <build>
+    <extensions>
+      <extension>
+        <groupId>eu.maveniverse.maven.njord</groupId>
+        <artifactId>extension</artifactId>
+        <version>0.5.2</version>
+      </extension>
+    </extensions>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
         <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-clean-plugin</artifactId>
           <version>3.4.1</version>
         </plugin>
-        <!-- see http://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_maven-plugin_packaging -->
         <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-resources-plugin</artifactId>
           <version>3.3.1</version>
         </plugin>
         <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
           <version>3.14.0</version>
         </plugin>
         <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-plugin-plugin</artifactId>
           <version>3.15.1</version>
         </plugin>
         <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-surefire-plugin</artifactId>
           <version>3.5.3</version>
         </plugin>
         <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-jar-plugin</artifactId>
           <version>3.4.2</version>
         </plugin>
         <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-install-plugin</artifactId>
           <version>3.1.4</version>
         </plugin>
         <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-deploy-plugin</artifactId>
           <version>3.1.4</version>
         </plugin>
         <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-invoker-plugin</artifactId>
           <version>3.9.0</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-source-plugin</artifactId>
+          <version>2.1.2</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-javadoc-plugin</artifactId>
+          <version>2.7</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-gpg-plugin</artifactId>
+          <version>1.1</version>
         </plugin>
       </plugins>
     </pluginManagement>
@@ -166,16 +219,6 @@
             </goals>
           </execution>
         </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.sonatype.central</groupId>
-        <artifactId>central-publishing-maven-plugin</artifactId>
-        <version>0.7.0</version>
-        <extensions>true</extensions>
-        <configuration>
-          <publishingServerId>central</publishingServerId>
-          <waitUntil>uploaded</waitUntil>
-        </configuration>
       </plugin>
     </plugins>
   </build>
