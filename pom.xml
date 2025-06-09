@@ -22,7 +22,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.release>17</maven.compiler.release>
-    <maven.version>3.9.9</maven.version>
+    <maven.version>3.9.10</maven.version>
     <jacoco.version>0.8.13</jacoco.version>
     <njord.autoPublish>true</njord.autoPublish>
     <drop>false</drop>
