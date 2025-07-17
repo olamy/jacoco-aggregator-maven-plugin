@@ -32,14 +32,14 @@ import org.codehaus.plexus.util.StringUtils;
 import org.jacoco.report.IReportGroupVisitor;
 
 /**
- * <p>
- * Creates a structured code coverage report (HTML, XML, and CSV) from multiple
- * projects within reactor. The report is created from all modules this project
- * depends on. From those projects class and source files as well as JaCoCo
+ * Creates a structured code coverage report (HTML, XML, and CSV) from all
+ * projects within the reactor. From those projects class and source files as well as JaCoCo
  * execution data files will be collected and aggregated. This mojo will not
- * fork any lifecycle and so need to be added after build generating jacoco
- * data.
- * </p>
+ * fork any lifecycle and so needs to be called after execution data files have been
+ * created already.
+ * <p>
+ * The generated report contains both cross-module and same-module coverage,
+ * which means that it replaces regular {@code jacoco:report} goal executions.
  *
  * @since 0.8.13
  */
