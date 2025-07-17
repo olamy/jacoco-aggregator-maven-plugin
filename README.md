@@ -1,6 +1,13 @@
 # jacoco-aggregator-maven-plugin
 
-This simple Apache Maven Mojo will help you generate aggregated Jacoco from muti modules projects.
+## Prerequisites
+
+- Java 8 or newer
+- Maven 3 or newer
+
+## Usage
+
+This simple Apache Maven Mojo will help you generate aggregated Jacoco from multi modules projects.
 
 This will prevent you creating extra Maven module as a workaround proposed here: https://www.baeldung.com/maven-jacoco-multi-module-project
 
