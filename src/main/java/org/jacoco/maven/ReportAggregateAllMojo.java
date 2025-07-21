@@ -19,11 +19,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
-import org.apache.maven.artifact.Artifact;
-import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
-import org.apache.maven.artifact.versioning.InvalidVersionSpecificationException;
-import org.apache.maven.artifact.versioning.VersionRange;
-import org.apache.maven.model.Dependency;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
@@ -106,10 +101,8 @@ public class ReportAggregateAllMojo extends AbstractReportMojo {
         final FileFilter filter = new FileFilter(dataFileIncludes,
                 dataFileExcludes);
         loadExecutionData(support, filter, project.getBasedir());
-        for (final MavenProject dependency : findDependencies(
-                Artifact.SCOPE_COMPILE, Artifact.SCOPE_RUNTIME,
-                Artifact.SCOPE_PROVIDED, Artifact.SCOPE_TEST)) {
-            loadExecutionData(support, filter, dependency.getBasedir());
+        for (final MavenProject subProject : getSubProjects()) {
+            loadExecutionData(support, filter, subProject.getBasedir());
         }
     }
 
@@ -138,10 +131,8 @@ public class ReportAggregateAllMojo extends AbstractReportMojo {
         if (includeCurrentProject) {
             processProject(support, group, project);
         }
-        for (final MavenProject dependency : findDependencies(
-                Artifact.SCOPE_COMPILE, Artifact.SCOPE_RUNTIME,
-                Artifact.SCOPE_PROVIDED)) {
-            processProject(support, group, dependency);
+        for (final MavenProject subProject : getSubProjects()) {
+            processProject(support, group, subProject);
         }
     }
 
@@ -174,37 +165,7 @@ public class ReportAggregateAllMojo extends AbstractReportMojo {
         return "JaCoCo Aggregate";
     }
 
-
-    /**
-     * Note that if dependency specified using version range and reactor
-     * contains multiple modules with same artifactId and groupId but of
-     * different versions, then first dependency which matches range will be
-     * selected. For example in case of range <code>[0,2]</code> if version 1 is
-     * before version 2 in reactor, then version 1 will be selected.
-     */
-    private MavenProject findProjectFromReactor(final Dependency d) {
-        final VersionRange depVersionAsRange;
-        try {
-            depVersionAsRange = VersionRange
-                    .createFromVersionSpec(d.getVersion());
-        } catch (final InvalidVersionSpecificationException e) {
-            throw new AssertionError(e);
-        }
-
-        for (final MavenProject p : reactorProjects) {
-            final DefaultArtifactVersion pv = new DefaultArtifactVersion(
-                    p.getVersion());
-            if (p.getGroupId().equals(d.getGroupId())
-                    && p.getArtifactId().equals(d.getArtifactId())
-                    && depVersionAsRange.containsVersion(pv)) {
-                return p;
-            }
-        }
-        return null;
-    }
-
-
-    protected List<MavenProject> findDependencies(final String... scopes) {
+    protected List<MavenProject> getSubProjects() {
 
         List<MavenProject> result = reactorProjects;
 
