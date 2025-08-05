@@ -25,7 +25,7 @@
     <maven.version>3.0</maven.version><!-- same level as jacoco-maven-plugin -->
     <jacoco.version>0.8.13</jacoco.version>
     <njord.autoPublish>true</njord.autoPublish>
-    <njord.version>0.8.2</njord.version>
+    <njord.version>0.8.3</njord.version>
     <drop>false</drop>
     <njord.prefix>${project.artifactId}-${project.version}</njord.prefix>
   </properties>
