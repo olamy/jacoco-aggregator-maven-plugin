@@ -23,7 +23,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.release>8</maven.compiler.release><!-- same level as jacoco-maven-plugin -->
     <maven.version>3.9.11</maven.version><!-- same level as jacoco-maven-plugin -->
-    <jacoco.version>0.8.13</jacoco.version>
+    <jacoco.version>0.8.14</jacoco.version>
     <njord.autoPublish>true</njord.autoPublish>
     <njord.version>0.8.4</njord.version>
     <drop>false</drop>
